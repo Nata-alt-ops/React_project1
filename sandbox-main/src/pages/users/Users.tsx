@@ -1,6 +1,7 @@
 import React from 'react';
 import './Users.css';
 
+
 export const Users = () => {
 
     const users = [
@@ -26,12 +27,19 @@ export const Users = () => {
     ]
 
   return (
-    <div>
-      Список пользователей
+    <div className='users_body'>
+        <div className='users_con'>
+          <input id='search' type='text' placeholder="🔍Поиск" className='search'/>
 
-        {users.map((user) => (
-            <>{user.id} {user.name}</>
-        ))}
+      <div>
+        Список пользователей
+
+          {users.map((user) => (
+              <>{user.id} {user.name} {user.name}</>
+          ))}
+      </div>
+       </div>
     </div>
   )
 };
+

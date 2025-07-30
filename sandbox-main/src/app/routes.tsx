@@ -18,6 +18,7 @@ export const AppRoutes = () => {
         <Route path="users" element={<Users />} />
         <Route path="users/:id" element={<UserCard />} />
         <Route path="news" element={<>Новости</>} />
+        <Route path="about_us" element={<>О нас</>} />
         <Route index element={<Navigate to="/users" />} />
 
         <Route path="*" element={<Navigate to="/" />} />
