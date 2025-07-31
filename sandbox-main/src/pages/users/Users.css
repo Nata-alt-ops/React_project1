@@ -1,12 +1,12 @@
 body{
   background-color: #FAFBFC;
 }
+/*Кнопки навигации*/
 .navigate {
   background-color: transparent;
   cursor: pointer;
   border-radius: 0;
 }
-
 .navigate:hover,
 .navigate-active
 {
@@ -15,17 +15,20 @@ body{
   border-radius: 0;
   border-bottom: 2px solid white;
 }
+/*Тело страницы пользователи*/
 .users_body{
   background-color: #FAFBFC;
-  /*background-color: chocolate;*/
+  /*Использовался для правильного размещения контейнера
+  background-color: chocolate;*/
   width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 32px;
- 
 }
+
+/*Контйенер с поиском и списком пользователей*/
 .users_con{
   width: 1572px;
   height:auto;
@@ -33,6 +36,7 @@ body{
   background-color: #ffffff;
   border-radius: 10px;
 }
+/*Стили для поисковика*/
 .search{
   background-color: #F6F6F7 !important;
   border: 2px solid #8f8e8e !important;
@@ -47,6 +51,18 @@ body{
   margin-top: 26px;
   margin-left: 26px;
 }
+
+/*Контейнер для таблицы с пользователями*/
+.table_con{
+  width: 1540px;
+  height: auto;
+  /*background-color: rgb(75, 248, 127) !important;*/
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/*Стили для таблицы с пользователями */
 .users_table {
   width: 100%;
    border-collapse: collapse; 
@@ -58,9 +74,8 @@ body{
   margin-left: 27px;
 }
   
-  
-
-
+/*Шапка таблицы*/ 
+/*стили для названий столбцов*/
 .table_head{
   font-size: 14px;
   font-family: 'Noto Sans';
@@ -69,6 +84,14 @@ body{
   letter-spacing: 0;
   color: #101018;
 }
+
+/*Стили для 5 столбца действия*/
+.actions{
+  text-align: right;
+  padding-right: 40px;
+}
+
+/*Контейнер для имени, аватара и должности пользователя*/
 .user_text{
     display: flex;
     align-items: center;
@@ -77,6 +100,8 @@ body{
     padding: 10px;
     
 }
+
+/*Стили для аватара*/
 .img{
   width: 36px;
   height: 36px;
@@ -85,6 +110,7 @@ body{
    object-fit: cover;
 }
 
+/*Контейнер для имени и должности*/
 .text_info{
   display: flex;
   flex-direction: column;
@@ -93,6 +119,8 @@ body{
   white-space: nowrap;
   max-width: 300px;
 }
+
+/*Стили для имени*/
 .name_text{
   font-family: 'Noto Sans';
   font-weight: 700;
@@ -100,8 +128,10 @@ body{
   line-height: 20px;
   letter-spacing: 0;
   color: #35353A;
-   margin: 0px;
+  margin: 0px;
 }
+
+/*Стили для должности*/
 .role_text{
   font-weight: 400;
   font-family: 'Noto Sans';
@@ -110,8 +140,9 @@ body{
   letter-spacing: 0;
   color:#6E6E71;
   margin: 0px;
-  
 }
+
+/*Стили для столбца город*/
 .city_text{
   font-family: 'Noto Sans';
   font-weight: 400;
@@ -122,6 +153,8 @@ body{
   /*background-color: darkgray;*/
  
 }
+
+/*Стили для столбца ссылок*/
 .link_text{
   font-family: 'Noto Sans';
   font-weight: 400;
@@ -133,9 +166,9 @@ body{
   text-decoration: none !important;
   /*background-color: darkgray;*/
 }
-.link_text:hover{
-  color: #175AE4;
-}
+
+/*Ссылка обычное состояние, если по ней уже переходили,
+при наведении и в момент клика на нее*/
 .link_text a,
 .link_text a:visited,
 .link_text a:hover,
@@ -145,45 +178,33 @@ body{
   cursor: pointer;
 }
 
-.icon_2{
-  margin-left: 0px;
-   width: 28px;
-  height: 28px;
-  cursor: pointer;
-  
-}
+/*Стили для 1 иконки*/
 .icon_1{
   padding-left: 214px;
   width: 28px;
   height: 28px;
   cursor: pointer;
- 
 }
-/*.status_text,.actions_icons{
-  /*background-color: darkgray;
-}*/
-.actions{
-  text-align: right;
-  padding-right: 40px;
+
+/*Стили для 2 иконки*/
+.icon_2{
+  margin-left: 0px;
+   width: 28px;
+  height: 28px;
+  cursor: pointer;
 }
+
+/*горизонтальные полосы снизу*/
 .users_table tr {
   border-bottom: 1px solid #E5E5E5; /* Цвет и толщина линии */
 }
 
-/* Убираем линию у последней строки */
+/*Убирает у последнего пользователя линию*/
 .users_table tr:last-child {
   border-bottom: none;
 }
-.table_con{
-  width: 1540px;
-  height: auto;
-  /*background-color: rgb(75, 248, 127) !important;*/
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
- 
 
-}
+/*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в теле таблицы*/
 .users_table td:nth-child(3),
 .users_table td:nth-child(4) {
   position: relative;
@@ -191,6 +212,8 @@ body{
   border-left: 1px solid #f1f0f0;
 
 }
+
+/*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в шапке*/
 .users_table th:nth-child(3),
 .users_table th:nth-child(4) {
   position: relative;

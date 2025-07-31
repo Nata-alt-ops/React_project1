@@ -6,7 +6,7 @@ export const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [users, setUsers] = useState(
     [
-        {
+        {/*Список пользователей*/ 
             id: 1,
             name: 'Balaji Nant',
             role: 'Lead Product Designer',
@@ -106,13 +106,10 @@ export const Users = () => {
           status: 'Verified',
           photo: '/avatar10.jpg'
         },
-        
-
-
     ]
-
   );
-  /*Удалаяет пользователей
+
+  /*Удаление пользователей
   window.confirm - показывает окно с надписью и кнопками 
   120 строка - создание нового массива, без удаленного пользователя*/ 
   const DeleteUsers = (id:number) =>{
@@ -120,7 +117,7 @@ export const Users = () => {
     setUsers(newUsers => newUsers.filter(user => user.id !== id));
   }
   };
-
+    /*Вид списка пользователей без возможности удалить*/ 
     /*const users = [
         {
             id: 1,
@@ -222,16 +219,17 @@ export const Users = () => {
           status: 'Verified',
           photo: '/avatar10.jpg'
         },
-        
-
-
     ];*/
+
+    /*Для поисковой строки - осуществляет поиск по ввсем столбцам таблицы*/ 
     const Users = users.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    /*Для 4 столбца - отобрвжения статуса с определенным цветом*/ 
     const getStatus = (status:string) =>{
       switch(status){
         case 'Verified':
@@ -267,8 +265,7 @@ export const Users = () => {
       }
     };
     
-
-
+  /*Что мы видим в итоге*/ 
   return (
     <div className='users_body'>
         <div className='users_con'>
@@ -286,6 +283,7 @@ export const Users = () => {
             </tr>
             </thead>
             <tbody>
+              {/*Перебор массива пользователей*/}
               {Users.map(user => (
                 <tr key={user.id}>
                   <td>
