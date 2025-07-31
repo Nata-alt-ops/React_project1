@@ -228,6 +228,9 @@ export const Users = () => {
         user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    
+
+
 
     /*Для 4 столбца - отобрвжения статуса с определенным цветом*/ 
     const getStatus = (status:string) =>{
@@ -265,12 +268,36 @@ export const Users = () => {
       }
     };
     
+    
   /*Что мы видим в итоге*/ 
   return (
     <div className='users_body'>
         <div className='users_con'>
           <input id='search' type='text' placeholder="🔍Поиск" className='search'
            onChange={(e) => setSearchTerm(e.target.value)} />
+           {/*Добавление нового пользователя*/}
+          <button className='add_user'>Добавить пользователя</button>
+          {/*Форма для заполнения*/}
+          {/*<div className='anketa'>
+            <form action="" method="get">
+                <p>
+                  <label>Введите имя пользователя:</label>
+                  <input type="text" name='name' id='name' required />
+                </p>
+                <p>
+                  <label>Введите город</label>
+                  <input type="text" name="city" id="city" required /> 
+                </p>
+                <p>
+                  <label>Введите ссылку:</label>
+                  <input type="url" name="url" id="url" required />
+                </p>
+                <p>
+                  <label>Статус</label>
+                  <input type="text" name="status"
+                </p>
+            </form>
+          </div>*/}
           <div className='table_con'>
           <table className='users_table'>
             <thead className='table_head'>
