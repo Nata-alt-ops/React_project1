@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 import './Users.css';
 
 
@@ -108,13 +109,14 @@ export const Users = () => {
         },
     ]
   );
+  
 
   /*Удаление пользователей
   window.confirm - показывает окно с надписью и кнопками 
   120 строка - создание нового массива, без удаленного пользователя*/ 
   const DeleteUsers = (id:number) =>{
   if (window.confirm('Вы точно хотите удалить этого пользователя?')) {
-    setUsers(newUsers => newUsers.filter(user => user.id !== id));
+    setUsers(nUsers => nUsers.filter(user => user.id !== id));
   }
   };
     /*Вид списка пользователей без возможности удалить*/ 
@@ -276,7 +278,7 @@ export const Users = () => {
           <input id='search' type='text' placeholder="🔍Поиск" className='search'
            onChange={(e) => setSearchTerm(e.target.value)} />
            {/*Добавление нового пользователя*/}
-          <button className='add_user'>Добавить пользователя</button>
+          {/*<button className='add_user'>Добавить пользователя</button>*/}
           {/*Форма для заполнения*/}
           {/*<div className='anketa'>
             <form action="" method="get">
