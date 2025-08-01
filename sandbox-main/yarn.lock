@@ -10718,6 +10718,7 @@ __metadata:
     "@types/react-modal": "npm:^3.16.3"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
+    react-hook-form: "npm:^7.61.1"
     react-modal: "npm:^3.16.3"
     react-router-dom: "npm:^7.7.1"
     react-scripts: "npm:5.0.1"
@@ -10920,6 +10921,15 @@ __metadata:
   version: 6.1.0
   resolution: "react-error-overlay@npm:6.1.0"
   checksum: 10c0/2b52308b9e489dfaa25df85c7ed5c200371bc214245161a0833b729f9c6b1a2e591e1d1e07c3d3859ffa19b84a386c219d93df9ba13d819be34c20f40e71a555
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.61.1":
+  version: 7.61.1
+  resolution: "react-hook-form@npm:7.61.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10c0/c241bca80f6d5f9f8b4f24b668670a3ee7249f9cf99537219c4ac1072431493d3768a910b6f2aaff20689a727d0e2797aeacb1ab9285b3e59309de3dd1bead41
   languageName: node
   linkType: hard
 

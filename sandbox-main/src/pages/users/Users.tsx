@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
 import './Users.css';
+type User = {
+  id: number;
+  name: string;
+  role: string;
+  city: string;
+  email: string;
+  link: string;
+  status: string;
+  photo: string;
+};
+
+type FormData = {
+  name: string;
+  role: string;
+  city: string;
+  email: string;
+  link: string;
+  status: string;
+};
 
 
 export const Users = () => {
@@ -109,6 +129,67 @@ export const Users = () => {
         },
     ]
   );
+  /*Первоначальное состояние модального окна - закрыто*/
+  const[ isModalOpen, setIsModalOpen] = useState(false);
+  /*register — связывает поля ввода с формой (аналог name и onChange в ручном управлении).
+    handleSubmit — обрабатывает отправку формы.
+    reset — сбрасывает значения формы.
+    errors — содержит ошибки валидации.*/ 
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+  /*Добавление нового пользователя*/
+  /*const[ newUser, setNewUser] = useState({
+    name:'',
+    role:'',
+    city:'',
+    email: 'ivan@doe.com',
+    link:'',
+    status:''
+  });*/
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    reset(); // Сброс формы
+  };
+  /*Открытие окна */
+  /*const openModal = () => setIsModalOpen(true);
+  /*Закрытие окна
+  const closeModal = () =>{
+    setIsModalOpen(false);
+    setNewUser({
+      name: '',
+      role: '',
+      city: '',
+      email: 'ivan@doe.com',
+      link: '',
+      status: ''
+    });
+  };*/
+  /*Обрабатывает вводимую инфу*/
+  /*const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setNewUser({...newUser, [name]: value});
+  };
+  /*Добавление нового пользователя 
+  const addUser = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const userToAdd = {
+        ...newUser, // Берет данные из формы
+        id: users.length + 1, //Новый id 
+        photo: '/Avatar.png' //фото по умолчанию
+    }
+    setUsers([...users, userToAdd]) //Добавление нового пользователя
+    closeModal() //Закрытие окна
+  }*/
+ /*Отправка формы*/
+  const onSubmit = (data: FormData) => {
+    const newUser: User = {
+      ...data,  // Берет данные из формы
+      id: users.length + 1, //Новый id 
+      photo: '/Avatar.png', //фото по умолчанию
+    };
+    setUsers([...users, newUser]);
+    closeModal();
+  };
   
 
   /*Удаление пользователей
@@ -230,10 +311,6 @@ export const Users = () => {
         user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    
-
-
-
     /*Для 4 столбца - отобрвжения статуса с определенным цветом*/ 
     const getStatus = (status:string) =>{
       switch(status){
@@ -268,9 +345,7 @@ export const Users = () => {
             minHeight:'29px',
            };
       }
-    };
-    
-    
+    };  
   /*Что мы видим в итоге*/ 
   return (
     <div className='users_body'>
@@ -278,28 +353,60 @@ export const Users = () => {
           <input id='search' type='text' placeholder="🔍Поиск" className='search'
            onChange={(e) => setSearchTerm(e.target.value)} />
            {/*Добавление нового пользователя*/}
-          {/*<button className='add_user'>Добавить пользователя</button>*/}
-          {/*Форма для заполнения*/}
-          {/*<div className='anketa'>
-            <form action="" method="get">
-                <p>
-                  <label>Введите имя пользователя:</label>
-                  <input type="text" name='name' id='name' required />
-                </p>
-                <p>
-                  <label>Введите город</label>
-                  <input type="text" name="city" id="city" required /> 
-                </p>
-                <p>
-                  <label>Введите ссылку:</label>
-                  <input type="url" name="url" id="url" required />
-                </p>
-                <p>
-                  <label>Статус</label>
-                  <input type="text" name="status"
-                </p>
-            </form>
-          </div>*/}
+          <button className='add_user' onClick={openModal}>Добавить пользователя</button>
+          {/*Модальное окно и форма для заполнения*/}
+          {/*Модальное окно*/}
+
+           <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          className={'modal_window'}
+          overlayClassName="modal-overlay"
+        >{/*Сама форма заполнения*/}
+          <form onSubmit={handleSubmit(onSubmit)} className='modal'>
+                <div className="form-group">
+              <label className='label_name'>Имя:</label>
+              <input
+                {...register("name", { required: "Обязательное поле" })}
+                className={errors.name ? "error" : ""}
+              />
+              {errors.name && <span className="error-text">{errors.name.message}</span>}
+               <label>Должность:</label>
+              <input
+                {...register("role", { required: "Обязательное поле" })}
+              />
+               <label>Город:</label>
+              <input
+                {...register("city", { required: "Обязательное поле" })}
+              />
+              <label>Email:</label>
+              <input
+                type="email"
+                {...register("email")}
+              />
+               <label>Ссылка:</label>
+              <input
+                type="url"
+                {...register("link")}
+              />
+            </div>
+            <div className="form-group">
+              <label>Статус:</label>
+              <select {...register("status", { required: true })}>
+                <option value="">Выберите статус</option>
+                <option value="Verified" className='Verified'>Verified</option>
+                <option value="Ongoing" className='Ongoing'>Ongoing</option>
+                <option value="On Hold" className='On_Hold'>On Hold</option>
+                <option value="Rejected" className='Rejected'>Rejected</option>
+              </select>
+            </div>
+
+            <div className="form-buttons">
+              <button type="submit" className="submit-btn">Добавить пользователя</button>
+              <button type="button" onClick={closeModal} className="cancel-btn">Отмена</button>
+            </div>
+          </form>
+        </Modal>  
           <div className='table_con'>
           <table className='users_table'>
             <thead className='table_head'>
@@ -338,7 +445,6 @@ export const Users = () => {
                     </td>
                 </tr>
               ))}
-              
               {/*Users.map(user => (
                 <>
                   <tr key={`${user.id}-main`}>
@@ -361,7 +467,6 @@ export const Users = () => {
           </div>
       {/*<div>
         Список пользователей
-
           {users.map((user) => (
               <>{user.id} {user.name} {user.name}</>
           ))}
