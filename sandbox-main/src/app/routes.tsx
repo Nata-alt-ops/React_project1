@@ -3,6 +3,7 @@ import {Navigate, Outlet, Route, Routes} from 'react-router-dom';
 import {Layout} from "../components/layout";
 import {Users} from "../pages/users";
 import {UserCard} from "../pages/user-card";
+import {News} from "../pages/news";
 
 export const AppRoutes = () => {
   return (
@@ -17,7 +18,7 @@ export const AppRoutes = () => {
       >
         <Route path="users" element={<Users />} />
         <Route path="users/:id" element={<UserCard />} />
-        <Route path="news" element={<>Новости</>} />
+        <Route path="news" element={<News />} />
         <Route path="about_us" element={<>О нас</>} />
         <Route index element={<Navigate to="/users" />} />
 
