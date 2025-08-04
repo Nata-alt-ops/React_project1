@@ -128,6 +128,15 @@ body{
   line-height: 20px;
   letter-spacing: 0;
   color: #35353A;
+  /*background-image:
+    linear-gradient(250deg,
+      #5fe0d3 10%,
+      #ff7789 50%,
+      #ffde3a 100%
+    );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;*/
   margin: 0px;
 }
 
@@ -138,7 +147,11 @@ body{
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0;
-  color:#6E6E71;
+  /*color:#6E6E71;*/
+  /*background-image: linear-gradient(to top, #ff00cc, #3333ff, #00ff99);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;*/
   margin: 0px;
 }
 
@@ -149,10 +162,14 @@ body{
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0;
-  color: #35353A;
+  /*color: #35353A;*/
   /*background-color: darkgray;*/
- 
+ /*background-image: linear-gradient(to right, #ff00cc, #3333ff, #00ff99);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;*/
 }
+
 
 /*Стили для столбца ссылок*/
 .link_text{
@@ -237,7 +254,7 @@ body{
   margin-left: 1009px;
   cursor: pointer;
   color: #ffffff;
-  background-image:
+ /* background-image:
     linear-gradient(250deg,
       #833AB4 10%,
       #FD1D1D 50%,
@@ -245,7 +262,7 @@ body{
     );
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
+  color: transparent;*/
 }
 .add_user:hover{
   background-image:
@@ -257,7 +274,7 @@ body{
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-   border: 2px solid #000000 !important;
+   border: 2px solid #5242e2 !important;
 }
 .modal-overlay {
   position: fixed;

@@ -136,50 +136,11 @@ export const Users = () => {
     reset — сбрасывает значения формы.
     errors — содержит ошибки валидации.*/ 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  /*Добавление нового пользователя*/
-  /*const[ newUser, setNewUser] = useState({
-    name:'',
-    role:'',
-    city:'',
-    email: 'ivan@doe.com',
-    link:'',
-    status:''
-  });*/
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
     reset(); // Сброс формы
   };
-  /*Открытие окна */
-  /*const openModal = () => setIsModalOpen(true);
-  /*Закрытие окна
-  const closeModal = () =>{
-    setIsModalOpen(false);
-    setNewUser({
-      name: '',
-      role: '',
-      city: '',
-      email: 'ivan@doe.com',
-      link: '',
-      status: ''
-    });
-  };*/
-  /*Обрабатывает вводимую инфу*/
-  /*const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setNewUser({...newUser, [name]: value});
-  };
-  /*Добавление нового пользователя 
-  const addUser = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const userToAdd = {
-        ...newUser, // Берет данные из формы
-        id: users.length + 1, //Новый id 
-        photo: '/Avatar.png' //фото по умолчанию
-    }
-    setUsers([...users, userToAdd]) //Добавление нового пользователя
-    closeModal() //Закрытие окна
-  }*/
  /*Отправка формы*/
   const onSubmit = (data: FormData) => {
     const newUser: User = {
@@ -200,110 +161,6 @@ export const Users = () => {
     setUsers(nUsers => nUsers.filter(user => user.id !== id));
   }
   };
-    /*Вид списка пользователей без возможности удалить*/ 
-    /*const users = [
-        {
-            id: 1,
-            name: 'Balaji Nant',
-            role: 'Lead Product Designer',
-            city: 'Vancouver',
-            email: 'ivan@doe.com',
-            link: 'https://balajinant.com',
-            status: 'Verified',
-            photo: '/avatar1.jpg'
-        },
-        {
-            id: 2,
-            name: 'Nithya Menon',
-            role: 'UI Designer',
-            city: 'Bangalore',
-            email: 'ivan@doe.com',
-            link: 'project.com/user849',
-            status: 'Ongoing',
-            photo: '/avatar2.png'
-        },
-        {
-          id:3,
-          name: 'Meera Gonzalez',
-          role: 'Product Designer',
-          city: 'Toronto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar3.png'
-        },
-        {
-          id:4,
-          name: 'Karthik Subramanian',
-          role: 'Sub Content',
-          city: 'Coimbatore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Ongoing',
-          photo: '/Avatar.png'
-        },
-        {
-          id:5,
-          name: 'Mithra B',
-          role: 'Product Designer',
-          city: 'Vancouver',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/Avatar.png'
-        },
-        {
-          id:6,
-          name: 'Jagathesh Narayanan',
-          role: 'Coimbatore',
-          city: 'Coimbatore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Rejected',
-          photo: '/avatar6.jpg'
-        },
-        {
-          id:7,
-          name: 'Steve Rogers',
-          role: 'Developer',
-          city: 'Toronto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/avatar7.jpg'
-        },
-        {
-          id:8,
-          name: 'Richard Hendricks',
-          role: 'Sr. Developer',
-          city: 'Palo Alto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar8.jpg'
-        },
-        {
-          id:9,
-          name: 'Monica Patel',
-          role: 'UX Writer',
-          city: 'Bangalore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar9.jpg'
-        },
-        {
-          id:10,
-          name: 'Dinesh Kumar',
-          role: 'Project Manager',
-          city: 'Chennai',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/avatar10.jpg'
-        },
-    ];*/
-
     /*Для поисковой строки - осуществляет поиск по ввсем столбцам таблицы*/ 
     const Users = users.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -445,32 +302,9 @@ export const Users = () => {
                     </td>
                 </tr>
               ))}
-              {/*Users.map(user => (
-                <>
-                  <tr key={`${user.id}-main`}>
-                    <td><img src={user.photo} className='img'/>
-                      <td className='name_text'><strong>{user.name}</strong></td>
-                    <tr key={`${user.id}-role`}>
-                    <td className="role_text"colSpan={5}>{user.role}</td>
-                  </tr>
-                  </td>
-                    
-                    <td>{user.city}</td>
-                    <td><a href={`https://${user.link}`}>{user.link}</a></td>
-                    <td>{user.status}</td>
-                    <td>✓</td>
-                  </tr>
-                </>
-              ))*/}
             </tbody>
           </table>
           </div>
-      {/*<div>
-        Список пользователей
-          {users.map((user) => (
-              <>{user.id} {user.name} {user.name}</>
-          ))}
-      </div>*/}
        </div>
     </div>
   )
