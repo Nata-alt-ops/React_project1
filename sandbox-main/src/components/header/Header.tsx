@@ -1,11 +1,14 @@
 import React from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
+import { useEvent } from 'effector-react';
+import { logout } from '../AuthGuard/auth';
 import './Header.css';
 
 export const Header = () => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
   const isActive = (name: string) => pathname === name;
+  const logoutFn = useEvent(logout);
 
   const navigateMenu = [
     {
@@ -21,6 +24,11 @@ export const Header = () => {
       path: '/about_us',
     },
     ];
+    const handleLogout = () => {
+    logoutFn(); 
+    window.location.href = '/login';
+  };
+
 
   return (
     <div className={'header_con'}>
@@ -35,6 +43,7 @@ export const Header = () => {
               <>{menu.name}</>
             </div>
           ))}
+          <button onClick={handleLogout}>Выйти</button>
         </div>
       </div>
     </div>
