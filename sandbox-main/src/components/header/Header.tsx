@@ -8,7 +8,7 @@ export const Header = () => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
   const isActive = (name: string) => pathname === name;
-  const logoutFn = useEvent(logout);
+ 
 
   const navigateMenu = [
     {
@@ -24,10 +24,7 @@ export const Header = () => {
       path: '/about_us',
     },
     ];
-    const handleLogout = () => {
-    logoutFn(); 
-    window.location.href = '/login';
-  };
+   
 
 
   return (
@@ -43,7 +40,7 @@ export const Header = () => {
               <>{menu.name}</>
             </div>
           ))}
-          <button onClick={handleLogout}>Выйти</button>
+          
         </div>
       </div>
     </div>

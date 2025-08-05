@@ -295,7 +295,7 @@ export const Users = () => {
                   <td className='status_text' >
                     <span style={getStatus(user.status)}>{user.status}</span></td>
                   <td className='actions_text'>
-                    <div className='actions_icons'>
+                    <div className='actions_icon'>
                         <span><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
                         <span onClick={() => DeleteUsers(user.id)}><img src='/Cell Action Button (1).png' className='icon_2' alt='' /></span>
                     </div>
