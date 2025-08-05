@@ -8,6 +8,12 @@ export const Header = () => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
   const isActive = (name: string) => pathname === name;
+  const logoutFn = useEvent(logout);
+
+  const handleLogout = () => {
+    logoutFn(); // Вызов события Effector
+    window.location.href = '/login';
+  };
  
 
   const navigateMenu = [
@@ -40,7 +46,7 @@ export const Header = () => {
               <>{menu.name}</>
             </div>
           ))}
-          
+          <button  className="exit" onClick={handleLogout} >Выйти</button>
         </div>
       </div>
     </div>
