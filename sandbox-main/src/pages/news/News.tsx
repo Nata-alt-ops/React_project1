@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import './News.css';
-type News = {
+type NewsItem = {
   id: number;
   title: string;
   description: string;
@@ -22,7 +22,7 @@ type FormData = {
 
 export const News = () =>{
     const[searchTerm, setSearchTerm] = useState('');
-    const[editnews, setEditNews] = useState<News | null>(null);
+    const[editnews, setEditNews] = useState<NewsItem | null>(null);
     const[news, setNews] = useState(
         [{
         id: 1,
@@ -187,7 +187,7 @@ export const News = () =>{
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {register, handleSubmit, reset, formState:{ errors }} = useForm<FormData>();
     /*Открытие окна*/
-    const openModal = (newsToEdit: News | null = null) => {setIsModalOpen(true);
+    const openModal = (newsToEdit: NewsItem | null = null) => {setIsModalOpen(true);
         if (newsToEdit){
             setEditNews(newsToEdit);
             reset(newsToEdit);
@@ -207,7 +207,7 @@ export const News = () =>{
             setNews(news.map(item => item.id === editnews.id ? {...data, id: editnews.id}:
                 item));
         }else{
-        const newNews: News = {
+        const newNews: NewsItem = {
             ...data,
             id: news.length +1,
             photo: data.photo || '/Frame 1.png',
