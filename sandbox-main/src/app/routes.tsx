@@ -4,6 +4,8 @@ import {Layout} from "../components/layout";
 import {Users} from "../pages/users";
 import {UserCard} from "../pages/user-card";
 import {News} from "../pages/news";
+import { AuthGuard } from '../pages/AuthGuard/AuthGuard';
+import { LoginForm } from '../pages/LoginForm/LoginForm'
 
 export const AppRoutes = () => {
   return (
@@ -11,9 +13,11 @@ export const AppRoutes = () => {
       <Route
         path="/"
         element={
+          <AuthGuard privateFallback={<LoginForm />}>
             <Layout>
               <Outlet />
             </Layout>
+            </AuthGuard>
         }
       >
         <Route path="users" element={<Users />} />

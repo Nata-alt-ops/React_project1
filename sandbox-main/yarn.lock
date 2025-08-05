@@ -5426,6 +5426,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"effector-react@npm:^23.3.0":
+  version: 23.3.0
+  resolution: "effector-react@npm:23.3.0"
+  dependencies:
+    use-sync-external-store: "npm:^1.0.0"
+  peerDependencies:
+    effector: ^23.0.0
+    react: ">=16.8.0 <20.0.0"
+  checksum: 10c0/335751c9d89391131b62a225e7c736dc64e34fe919d4c695096121e9eff7c6fa768c0ce2876d4090b6bf82d499a3cef29b80712c189418d2fc47a26eef1798a8
+  languageName: node
+  linkType: hard
+
+"effector@npm:^23.4.2":
+  version: 23.4.2
+  resolution: "effector@npm:23.4.2"
+  checksum: 10c0/c86522ea6fa439184a14436574414b2e120d55e1d4580a442d26b56eb65c9fc6b2e2d5456d07ded2e8f0808e2923fa7a0b1525f251be244285670d603f90151e
+  languageName: node
+  linkType: hard
+
 "ejs@npm:^3.1.6":
   version: 3.1.10
   resolution: "ejs@npm:3.1.10"
@@ -10716,6 +10735,8 @@ __metadata:
     "@types/react": "npm:^19.1.8"
     "@types/react-dom": "npm:^19.1.6"
     "@types/react-modal": "npm:^3.16.3"
+    effector: "npm:^23.4.2"
+    effector-react: "npm:^23.3.0"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
     react-hook-form: "npm:^7.61.1"
@@ -13012,6 +13033,15 @@ __metadata:
     querystringify: "npm:^2.1.1"
     requires-port: "npm:^1.0.0"
   checksum: 10c0/bd5aa9389f896974beb851c112f63b466505a04b4807cea2e5a3b7092f6fbb75316f0491ea84e44f66fed55f1b440df5195d7e3a8203f64fcefa19d182f5be87
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.0.0":
+  version: 1.5.0
+  resolution: "use-sync-external-store@npm:1.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/1b8663515c0be34fa653feb724fdcce3984037c78dd4a18f68b2c8be55cc1a1084c578d5b75f158d41b5ddffc2bf5600766d1af3c19c8e329bb20af2ec6f52f4
   languageName: node
   linkType: hard
 

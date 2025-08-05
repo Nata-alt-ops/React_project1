@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 /*Типы данных для полей ввода*/ 
-type LoginPassword = {
+type LoginForm = {
     username: string;
     password: string;
 };
@@ -14,7 +14,7 @@ export const Login = () =>{
     /*Для перехода между страницами*/
     const nav = useNavigate();
     const { 
-    register, handleSubmit, formState:{ errors }, setError } = useForm<LoginPassword>();
+    register, handleSubmit, formState:{ errors }, setError } = useForm<LoginForm>();
 
     /*Фун*/ 
 
