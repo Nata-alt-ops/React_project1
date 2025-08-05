@@ -22,6 +22,7 @@ type FormData = {
 
 export const News = () =>{
     const[searchTerm, setSearchTerm] = useState('');
+    const[editnews, setEditNews] = useState<News | null>(null);
     const[news, setNews] = useState(
         [{
         id: 1,
@@ -165,10 +166,10 @@ export const News = () =>{
     },
 
     ]);
-    const News = news.filter(news => 
-        news.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
-        news.description.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
-        news.category.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) 
+    const filteredNews = news.filter(newsitem => 
+        newsitem.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        newsitem.description.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+        newsitem.category.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) 
      
     );
     /*Удаление новости*/ 
@@ -186,7 +187,15 @@ export const News = () =>{
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {register, handleSubmit, reset, formState:{ errors }} = useForm<FormData>();
     /*Открытие окна*/
-    const openModal = () => setIsModalOpen(true);
+    const openModal = (newsToEdit: News | null = null) => {setIsModalOpen(true);
+        if (newsToEdit){
+            setEditNews(newsToEdit);
+            reset(newsToEdit);
+        }else {
+            setEditNews(null);
+            reset();
+        } };
+
     /*Закрытие окна и сброс формы*/
     const closeModal = () =>{
         setIsModalOpen(false);
@@ -194,14 +203,19 @@ export const News = () =>{
     };
     /*Отправление формы*/
     const onSubmit = (data: FormData) => {
+        if (editnews) {
+            setNews(news.map(item => item.id === editnews.id ? {...data, id: editnews.id}:
+                item));
+        }else{
         const newNews: News = {
             ...data,
             id: news.length +1,
             photo: data.photo || '/Frame 1.png',
         };
         setNews([...news, newNews]);
+    };
         closeModal();
-    }
+    };
 
 
   return (
@@ -211,22 +225,22 @@ export const News = () =>{
             <div className='r'>
             <input id='search_news' type='text' placeholder='🔍Поиск' className='search_news'
             onChange={(e) => setSearchTerm(e.target.value)} />
-            <button className="news_add_user" onClick={openModal}>Создать новость</button>
+            <button className="news_add_user" onClick={() => openModal()}>Создать новость</button>
             </div>
             
             
             
             <div className='news_table'>
                 
-                     {News.map(news =>(
-                    <div key={news.id} className='news-card'>
-                        <img src={news.photo} alt='' className='news_img'></img>
-                        <h1 className='news-title'>{news.title}</h1>
-                        <p className='news-description'>{news.description}</p>
-                        <p className='news-source'>{news.category} | {news.read} min read</p>
+                     {filteredNews.map(newsitem =>(
+                    <div key={newsitem.id} className='news-card'>
+                        <img src={newsitem.photo} alt='' className='news_img'></img>
+                        <h1 className='news-title'>{newsitem.title}</h1>
+                        <p className='news-description'>{newsitem.description}</p>
+                        <p className='news-source'>{newsitem.category} | {newsitem.read} min read</p>
                         <div className='actions_icons'>
-                        <span><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
-                        <span onClick={() => DeleteNews(news.id)}><img src='/Cell Action Button (1).png' className='icon_2' alt='' /></span>
+                        <span onClick={() => openModal(newsitem)}><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
+                        <span onClick={() => DeleteNews(newsitem.id)}><img src='/Cell Action Button (1).png' className='icon_2' alt='' /></span>
                     </div>
                     </div>
                 ))}
@@ -237,12 +251,12 @@ export const News = () =>{
             <Modal isOpen={isModalOpen} onRequestClose={closeModal} className={'modal_window'} overlayClassName={'modal-overlay'} >
             <form onSubmit={handleSubmit(onSubmit)} className='modal'>
                 <div className='form-group-label'>
-                    <label className='label_title'>Введите заголовок</label>
+                    <label className='label_title'>Введите заголовок:</label>
                     <input {...register('title', { required: "Обязательное поле"})}
                     className={errors.title ? 'error': ""} />
                     {errors.title && <span className="error-text">{errors.title.message}</span>}
 
-                    <label className='label_description'>Описание</label>
+                    <label className='label_description'>Описание:</label>
                     <textarea {...register('description', {required: "Обязательно поле"})} />
                      {errors.description && <span className="error-text">{errors.description.message}</span>}
 
@@ -269,14 +283,14 @@ export const News = () =>{
                      })}
                      className={errors.read ? 'error' : ''} />
                      {errors.read && <span className="error-text">{errors.read.message}</span>}
-                     <label className='label_img'>Вставте картинку(необязательно)</label>
+                     <label className='label_img'>Фото статьи(необязательно)</label>
                      <input 
                      type='text'
                      placeholder='Оставьте это поле пустым для изображения по умолчанию'
                      {...register('photo')} />
 
                 </div>
-                <button type="submit">Добавить новость</button>
+                <button type="submit" className='modal-button'>Добавить новость</button>
             </form>
             </Modal>
             </div>
