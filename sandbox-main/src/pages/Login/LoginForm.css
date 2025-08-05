@@ -1,0 +1,11 @@
+.login_con{
+    width: 1920px;
+    height: auto;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-con-form{
+    background-color: cornsilk;
+}

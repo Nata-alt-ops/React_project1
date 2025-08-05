@@ -5,7 +5,7 @@ import {Users} from "../pages/users";
 import {UserCard} from "../pages/user-card";
 import {News} from "../pages/news";
 import { AuthGuard } from '../pages/AuthGuard/AuthGuard';
-import { LoginForm } from '../pages/LoginForm/LoginForm'
+import { LoginForm } from '../pages/Login/LoginForm';
 
 export const AppRoutes = () => {
   return (
