@@ -1,13 +1,11 @@
 .login_con{
     width: 1920px;
     height: auto;
-    background-color: cadetblue;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .login-con-form{
-    background-color: cornsilk;
     margin-top: 291px;
     height: auto;
     width: 600px;
@@ -22,19 +20,29 @@
 .login_text_h1{
     font-family:'Poppins';
     font-weight: 700;
-    font-size: 40px;
+    font-size: 50px;
     line-height: 100%;
     letter-spacing: 3px;
     text-align: center;
 }
 
-.login-label{
+.login-label1{
     font-size: 20px;
     font-family:'Poppins';
     font-size: 20px;
     line-height: 100%;
     letter-spacing: 0;
     margin-left: 20px;
+
+}
+.login-label2{
+    font-size: 20px;
+    font-family:'Poppins';
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0;
+    margin-left: 20px;
+    margin-top: 5px !important;
 
 }
 
@@ -47,20 +55,30 @@
 }
 
 .login_button{
-    font-size: 20px;
+    font-size: 15px !important;
     font-family:'Poppins';
     font-size: 20px;
     line-height: 100%;
     letter-spacing: 0;
     margin-top: 5px;
-    color: #ffffff;
+    color: #000000;
     border-radius: 12px;
     align-items: center;
-    text-align: center;
-    width: 115px;
+    width: 125px;
     height: 52px;
     margin-left: 251px;
-    
+    background-color: #ffffff;
+    border: 1px solid #929292;
+    cursor: pointer;
+}
+.login_button:hover{
+    border: 1px solid rgb(117, 117, 117);
+    background-color: #DCDEEE;
+    color: #000000;
+
+}
+.error-text{
+    margin-left: 20px;
 }
 
 

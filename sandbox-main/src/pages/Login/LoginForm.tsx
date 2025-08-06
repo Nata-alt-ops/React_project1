@@ -35,21 +35,21 @@ export const LoginForm = () =>{
             <div className='login-con-form'>
                 <h1 className='login_text_h1'>Вход</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
-                    <label className='login-label'>Логин:</label>
+                    <label className='login-label1'>Логин:</label>
                     <input 
                     {...register('username', {required: 'Обязательное поле для заполнения'})}
                     className={errors.username ? 'error': ''} />
                     {errors.username && (<span className="error-text">{errors.username.message}</span>)}
 
-                    <label className='login-label'>Пароль:</label>
+                    <label className='login-label2'>Пароль:</label>
                     <input 
                     {...register('password', {required: 'Обязательное поле для заполнения'})}
                     className={errors.password ? 'error': ''} />
                     {errors.password && (<span className="error-text">{errors.password.message}</span>)}
-                    
+                    <button type='submit' className='login_button'>Войти</button>
                 </form>
                  
-                <button type='submit' className='login_button'>Войти</button>
+                
             </div>
         </div>
     )
