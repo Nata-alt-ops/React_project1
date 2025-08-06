@@ -253,7 +253,7 @@ export const Users = () => {
                 {...register("email")}
               />
                
-              <input placeholder='Ссылка'
+              <input placeholder='Ссылка(необязательно)'
                 type="url"
                 {...register("link")}
               />
