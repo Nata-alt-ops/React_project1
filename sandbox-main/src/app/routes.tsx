@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navigate, Outlet, Route, Routes} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {Navigate, Outlet, Route, Routes, useSearchParams} from 'react-router-dom';
 import {Layout} from "../components/layout";
 import {Users} from "../pages/users";
 import {UserCard} from "../pages/user-card";
@@ -7,13 +7,21 @@ import {News} from "../pages/news";
 import { AuthGuard } from '../pages/AuthGuard/AuthGuard';
 import { LoginForm } from '../pages/Login/LoginForm';
 
-export const AppRoutes = () => {
+export const AppRoutes :() => Element = ():Element => {
+  const[isAuthenticated, setIsAuthenticated ] = useState(false);
+  
+  useEffect(():void => {
+    const savedAuth:string|null = localStorage.getItem('isAuthenticated');
+    if (savedAuth) {
+      setIsAuthenticated(JSON.parse(savedAuth));
+    }
+  }, []);
   return (
     <Routes>
       <Route
         path="/"
         element={
-          <AuthGuard privateFallback={<LoginForm />}>
+          <AuthGuard isAuth={isAuthenticated}  privateFallback={<LoginForm setIsAuthenticated={setIsAuthenticated} />}>
             <Layout>
               <Outlet />
             </Layout>
