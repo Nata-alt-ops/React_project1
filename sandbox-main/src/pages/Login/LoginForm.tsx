@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
@@ -10,7 +9,12 @@ type LoginForm = {
     password: string;
 };
 
-export const LoginForm = () =>{
+type LoginFormProps  = {
+    setIsAuthenticated: (value:boolean) => void;
+};
+
+
+export const LoginForm = ({setIsAuthenticated}: LoginFormProps): Element =>{
     /*Для перехода между страницами*/
     const navigate = useNavigate();
     const [authError, setAuthError] = useState('');
@@ -22,6 +26,7 @@ export const LoginForm = () =>{
         /*console.log('Форма отправлена!', data);*/
         if (data.username === 'user' && data.password === '12345'){
             localStorage.setItem('isAuthenticated', 'true');
+            setIsAuthenticated(true);
             navigate('/users');
         } else {
            setAuthError('Неверный логин или пароль');
