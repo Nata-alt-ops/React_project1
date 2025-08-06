@@ -33,7 +33,7 @@ export const LoginForm = () =>{
     return(
         <div className='login_con'>
             <div className='login-con-form'>
-                <h1 className='login_text_h1'>Авторизация</h1>
+                <h1 className='login_text_h1'>Вход</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
                     <label className='login-label'>Логин:</label>
                     <input 
@@ -46,9 +46,10 @@ export const LoginForm = () =>{
                     {...register('password', {required: 'Обязательное поле для заполнения'})}
                     className={errors.password ? 'error': ''} />
                     {errors.password && (<span className="error-text">{errors.password.message}</span>)}
-
-                    <button type='submit' className='login_button'>Войти</button>
+                    
                 </form>
+                 
+                <button type='submit' className='login_button'>Войти</button>
             </div>
         </div>
     )
