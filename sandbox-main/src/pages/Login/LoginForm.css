@@ -72,7 +72,7 @@
     cursor: pointer;
 }
 .login_button:hover{
-    border: 1px solid rgb(117, 117, 117);
+    border: none;
     background-color: #DCDEEE;
     color: #000000;
 
@@ -81,5 +81,24 @@
     margin-left: 20px;
 }
 
+.error_message{
+    font-size: 20px;
+    font-family:'Poppins';
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0;
+    margin-left: 20px;
+    background-color: rgb(255, 89, 89);
+    height: 40px;
+    padding-top: 15px;
+    width: 555px;
+    padding-left: 10px;
+    border-radius: 7px;
+    color: #ffffff;
+    border: 1px solid #881010;
+    
+    
+
+}
 
 

@@ -229,35 +229,37 @@ export const Users = () => {
           className={'modal_window'}
           overlayClassName="modal-overlay"
         >{/*Сама форма заполнения*/}
-          <form onSubmit={handleSubmit(onSubmit)} className='modal'>
+          <form onSubmit={handleSubmit(onSubmit)} className='modal-form'>
                 <div className="form-group">
-              <label className='label_name'>Имя:</label>
-              <input
+              <label className='label_text'>Введите данные о пользователе:</label>
+              <input placeholder='Имя пользователя'
                 {...register("name", { required: "Обязательное поле" })}
                 className={errors.name ? "error" : ""}
               />
               {errors.name && <span className="error-text">{errors.name.message}</span>}
-               <label>Должность:</label>
-              <input
+              <input placeholder='Должность'
                 {...register("role", { required: "Обязательное поле" })}
+                className={errors.role ? "error" : ""}
               />
-               <label>Город:</label>
-              <input
+              {errors.role && <span className="error-text">{errors.role.message}</span>}
+              <input placeholder='Город'
                 {...register("city", { required: "Обязательное поле" })}
+                className={errors.city ? "error" : ""}
               />
-              <label>Email:</label>
+              {errors.city && <span className="error-text">{errors.city.message}</span>}
+        
               <input
-                type="email"
+                type="email" placeholder='Электронная почта'
                 {...register("email")}
               />
-               <label>Ссылка:</label>
-              <input
+               
+              <input placeholder='Ссылка'
                 type="url"
                 {...register("link")}
               />
             </div>
             <div className="form-group">
-              <label>Статус:</label>
+              <label className='label_status'>Статус:</label>
               <select {...register("status", { required: true })}>
                 <option value="">Выберите статус</option>
                 <option value="Verified" className='Verified'>Verified</option>

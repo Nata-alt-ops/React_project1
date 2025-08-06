@@ -29,6 +29,7 @@ export const LoginForm = ({setIsAuthenticated}: LoginFormProps)=>{
             setIsAuthenticated(true);
             navigate('/users');
         } else {
+             console.log('Ошибка авторизации');
            setAuthError('Неверный логин или пароль');
             
         }
@@ -38,6 +39,11 @@ export const LoginForm = ({setIsAuthenticated}: LoginFormProps)=>{
         <div className='login_con'>
             <div className='login-con-form'>
                 <h1 className='login_text_h1'>Вход</h1>
+                {authError && (
+                    <div className="error_message">
+                        {authError}
+                    </div>
+                    )}
                 <form onSubmit={handleSubmit(onSubmit)} >
                     <div className='login-form'>
                     <label className='login-label1'>Логин:</label>

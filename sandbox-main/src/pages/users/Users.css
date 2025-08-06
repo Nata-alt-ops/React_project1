@@ -300,8 +300,8 @@ body{
   background: white;
   padding: 25px;
   border-radius: 8px;
-  width: 500px;
-  max-width: 90%;
+  width: 300px;
+  max-width: 300px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   left:200px
 }
@@ -318,25 +318,35 @@ body{
   flex-direction: column;
   gap: 5px;
 }
-
-.form-group label {
+.label_text,.label_status{
   font-weight: 600;
   color: #35353A;
-    background-image: linear-gradient(to top, #5242e2,
-      #2ebdd6,
-      #38ec7d );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
   display: inline-block;
+  font-family: 'Roboto';
+  font-size: 25px;
+
 }
+
+
+.label_email{
+  font-weight: 400;
+  color: #35353A;
+  display: inline-block;
+  font-family: 'Roboto';
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+
 
 .form-group input,
 .form-group select {
-  padding: 8px 12px;
+  padding: 8px 20px;
   border: 1px solid #E5E5E5;
   border-radius: 4px;
   font-size: 14px;
+
+  height: 35px;
 }
 
 .form-buttons {

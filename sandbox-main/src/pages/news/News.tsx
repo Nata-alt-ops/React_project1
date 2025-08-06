@@ -251,17 +251,17 @@ export const News = () =>{
             <Modal isOpen={isModalOpen} onRequestClose={closeModal} className={'modal_window'} overlayClassName={'modal-overlay'} >
             <form onSubmit={handleSubmit(onSubmit)} className='modal'>
                 <div className='form-group-label'>
-                    <label className='label_title'>Введите заголовок:</label>
-                    <input {...register('title', { required: "Обязательное поле"})}
+                    <label className='label_title'>Создать Новость:</label>
+                    <input placeholder='Заголовок' {...register('title', { required: "Обязательное поле"})}
                     className={errors.title ? 'error': ""} />
                     {errors.title && <span className="error-text">{errors.title.message}</span>}
 
-                    <label className='label_description'>Описание:</label>
-                    <textarea {...register('description', {required: "Обязательно поле"})} />
+                    
+                    <textarea placeholder='описание' {...register('description', {required: "Обязательно поле"})} />
                      {errors.description && <span className="error-text">{errors.description.message}</span>}
 
-                    <label className='label_category'>Укажите категорию:</label>
-                    <select {...register("category", {required: "Выберете категорию"})}
+                    
+                    <select  {...register("category", {required: "Выберете категорию"})}
                     className={errors.category ? 'error' : ''} >
                     <option value={""}>Выберете категорию</option>
                     <option value="Space and Universe">Space and Universe</option>
@@ -271,8 +271,8 @@ export const News = () =>{
                     </select>
                      {errors.category && <span className="error-text">{errors.category.message}</span>}
 
-                     <label className='label_read'>Время чтения (в минутах)</label>
-                     <input 
+                    
+                     <input placeholder='время чтения (в минутах)'
                      type='number'
                      min={'1'}
                      max={'60'}
@@ -283,14 +283,14 @@ export const News = () =>{
                      })}
                      className={errors.read ? 'error' : ''} />
                      {errors.read && <span className="error-text">{errors.read.message}</span>}
-                     <label className='label_img'>Фото статьи(необязательно)</label>
+                    
                      <input 
                      type='text'
-                     placeholder='Оставьте это поле пустым для изображения по умолчанию'
+                     placeholder='Фото статьи (необязательно)'
                      {...register('photo')} />
-
+                    <button type="submit" className='modal-button'>Добавить новость</button>
                 </div>
-                <button type="submit" className='modal-button'>Добавить новость</button>
+                
             </form>
             </Modal>
             </div>

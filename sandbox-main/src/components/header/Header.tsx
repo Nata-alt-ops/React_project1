@@ -36,6 +36,7 @@ export const Header = () => {
   return (
     <div className={'header_con'}>
       <div className={'logo_nav_con'}>
+        
         <div className={'logo'}>
           <div className='cirius'></div>
           <p className='logo_text'>Logo</p>
@@ -46,7 +47,9 @@ export const Header = () => {
               <>{menu.name}</>
             </div>
           ))}
-          <button  className="exit" onClick={handleLogout} >Выйти</button>
+          <div className='exit_button'>
+          <button  className="exit" onClick={handleLogout} >Выход</button>
+          </div>
         </div>
       </div>
     </div>
