@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import './Users.css';
 type User = {
   id: number;
@@ -25,6 +26,14 @@ type FormData = {
 
 export const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const nav = useNavigate();
+  /*Проверяет авторизацию, если не прошел перебрасывает на страницу с логином и паролем*/ 
+  useEffect(() =>{
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    if (!isAuthenticated) {
+      nav('/login');
+    }
+  }, [nav])
   const [users, setUsers] = useState(
     [
         {/*Список пользователей*/ 

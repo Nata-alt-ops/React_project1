@@ -20,7 +20,7 @@ export const LoginForm = () =>{
     const onSubmit = (data: LoginForm) => {
         if (data.username === 'user' && data.password === '12345'){
             localStorage.setItem('isAuthenticated', 'true');
-            nav('/users')
+            nav('/users');
         } else {
             /*Ошибка если пароль или логин не правильные*/
             setError('root', {

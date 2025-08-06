@@ -7,7 +7,7 @@ export const logout = createEvent();
 
 // Хранилище состояния
 export const $isAuthenticated = createStore<boolean>(
-  localStorage.getItem('isAuthenticated') === 'true'
+  localStorage.getItem('isAuthenticated') !==null
 )
   .on(login, () => true)
   .on(logout, () => false);

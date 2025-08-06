@@ -10,7 +10,7 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
   children,
   privateFallback,
 }) => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated')  !== null;
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
   if (!isAuthenticated) {
     return <>{privateFallback}</>;
