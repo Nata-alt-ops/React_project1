@@ -9,11 +9,11 @@ export const Header = () => {
   const navigate = useNavigate();
   const isActive = (name: string) => pathname === name;
   const logoutFn = useEvent(logout);
-
-  const handleLogout = () => {
+  
+  /*const handleLogout = () => {
     logoutFn(); // Вызов события Effector
     window.location.href = '/login';
-  };
+  };*/
  
 
   const navigateMenu = [
@@ -48,7 +48,11 @@ export const Header = () => {
             </div>
           ))}
           <div className='exit_button'>
-          <button  className="exit" onClick={handleLogout} >Выход</button>
+           <button  className="exit" onClick={() => {
+            localStorage.removeItem('isAuthenticated');
+            logout(); 
+            navigate('/login'); // Перенаправляем на страницу входа
+          }} >Выход</button>
           </div>
         </div>
       </div>

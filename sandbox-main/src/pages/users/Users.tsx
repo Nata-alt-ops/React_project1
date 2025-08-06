@@ -27,13 +27,6 @@ type FormData = {
 export const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  /*Проверяет авторизацию, если не прошел перебрасывает на страницу с логином и паролем*/ 
-  useEffect(() =>{
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    if (!isAuthenticated) {
-      navigate('/');
-    }
-  }, [navigate])
   const [users, setUsers] = useState(
     [
         {/*Список пользователей*/ 
