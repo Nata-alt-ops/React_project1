@@ -7,7 +7,7 @@ import {News} from "../pages/news";
 import { AuthGuard } from '../pages/AuthGuard/AuthGuard';
 import { LoginForm } from '../pages/Login/LoginForm';
 
-export const AppRoutes :() => Element = ():Element => {
+export const AppRoutes = () => {
   const[isAuthenticated, setIsAuthenticated ] = useState(false);
   
   useEffect(():void => {

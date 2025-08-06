@@ -14,7 +14,7 @@ type LoginFormProps  = {
 };
 
 
-export const LoginForm = ({setIsAuthenticated}: LoginFormProps): Element =>{
+export const LoginForm = ({setIsAuthenticated}: LoginFormProps)=>{
     /*Для перехода между страницами*/
     const navigate = useNavigate();
     const [authError, setAuthError] = useState('');

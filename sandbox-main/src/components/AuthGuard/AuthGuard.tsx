@@ -11,7 +11,7 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({
   isAuth,
   children,
   privateFallback,
-}:AuthGuardProps):Element => {
+}:AuthGuardProps) => {
   if (!isAuth){
     return <>{privateFallback}</>;
   }
