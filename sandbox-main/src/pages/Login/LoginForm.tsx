@@ -44,13 +44,13 @@ export const LoginForm = ({setIsAuthenticated}: LoginFormProps)=>{
                     <input 
                     {...register('username', {required: 'Обязательное поле для заполнения'})}
                     className={errors.username ? 'error': ''} />
-                    {authError && <span className="error-text" style={{ color: 'red' }}>{authError}</span>}
+                    {errors.username && (<span className="error-text">{errors.username.message}</span>)}
 
                     <label className='login-label2'>Пароль:</label>
                     <input 
                     {...register('password', {required: 'Обязательное поле для заполнения'})}
                     className={errors.password ? 'error': ''} />
-                    {authError && <span className="error-text" style={{ color: 'red' }}>{authError}</span>}
+                   {errors.password && (<span className="error-text">{errors.password.message}</span>)}
                     <button type='submit'  className='login_button'>Войти</button>
                     </div>
                 </form>

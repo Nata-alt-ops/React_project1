@@ -4,7 +4,7 @@ import {Layout} from "../components/layout";
 import {Users} from "../pages/users";
 import {UserCard} from "../pages/user-card";
 import {News} from "../pages/news";
-import { AuthGuard } from '../pages/AuthGuard/AuthGuard';
+import { AuthGuard } from '../components/AuthGuard/AuthGuard';
 import { LoginForm } from '../pages/Login/LoginForm';
 
 export const AppRoutes = () => {
