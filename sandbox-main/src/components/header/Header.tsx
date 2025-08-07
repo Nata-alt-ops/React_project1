@@ -4,19 +4,20 @@ import { useEvent } from 'effector-react';
 import { logout } from '../AuthGuard/auth';
 import './Header.css';
 
-type HeaderProps  = {
-    setIsAuthenticated?: (value:boolean) => void;
+type HeaderProps = {
+  setIsAuthenticated: (value: boolean) => void;
 };
+
 
 export const Header = ({setIsAuthenticated}: HeaderProps) => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
-  const isActive = (name: string) => pathname === name;
-  const logoutFn = useEvent(logout);
+  const isActive = (path: string) => pathname === path;
+  /*const logoutFn = useEvent(logout);*/
 
-  const handleLogout = () => {
+ const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
-    setIsAuthenticated?.(false); // Обновляем состояние через пропс
+    setIsAuthenticated(false); // Аналогично LoginForm
     navigate('/login');
   };
 
