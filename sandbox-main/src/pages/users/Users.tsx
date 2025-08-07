@@ -3,7 +3,33 @@ import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import './Users.css';
-type User = {
+
+
+
+type User= {
+  id:number;
+  name:string;
+  username:string;
+  email:string;
+  address:{
+      street:string;
+      suite:string;
+      city:string;
+      zipcode:string;
+      geo:{
+        lat:string;
+        lng:string
+      }
+  };
+  phone:string;
+  website:string;
+  company:{
+    name:string;
+    catchPhrase:string;
+    bs:string;
+  }
+};
+/*type User = {
   id: number;
   name: string;
   role: string;
@@ -12,24 +38,69 @@ type User = {
   link: string;
   status: string;
   photo: string;
-};
+};*/
 
 type FormData = {
+  name:string;
+  username:string;
+  email:string;
+  address:{
+      street:string;
+      suite:string;
+      city:string;
+      zipcode:string;
+      geo:{
+        lat:string;
+        lng:string
+      }
+  };
+  phone:string;
+  website:string;
+  company:{
+    name:string;
+    catchPhrase:string;
+    bs:string;
+  }
+}
+
+/*type FormData = {
   name: string;
   role: string;
   city: string;
   email: string;
   link: string;
   status: string;
-};
+};*/
 
 
 export const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const [users, setUsers] = useState(
-    [
-        {/*Список пользователей*/ 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  // Загрузка данных
+  useEffect(() => {
+    setLoading(true);
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        if (!response.ok) { throw new Error('Ошибка загрузки');}
+        return response.json();
+      })
+      .then(info_Users: User[]) =>{
+        setUsers(info_Users);
+        setError(null);
+      })
+      .catch(err => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+    /*[
+        {/*Список пользователей
             id: 1,
             name: 'Balaji Nant',
             role: 'Lead Product Designer',
@@ -130,7 +201,7 @@ export const Users = () => {
           photo: '/avatar10.jpg'
         },
     ]
-  );
+  );/*
   /*Первоначальное состояние модального окна - закрыто*/
   const[ isModalOpen, setIsModalOpen] = useState(false);
   /*register — связывает поля ввода с формой (аналог name и onChange в ручном управлении).
@@ -146,6 +217,17 @@ export const Users = () => {
  /*Отправка формы*/
   const onSubmit = (data: FormData) => {
     const newUser: User = {
+      id: 
+
+
+
+
+
+
+
+
+
+
       ...data,  // Берет данные из формы
       id: users.length + 1, //Новый id 
       photo: '/Avatar.png', //фото по умолчанию
@@ -154,6 +236,29 @@ export const Users = () => {
     closeModal();
   };
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /*Удаление пользователей
   window.confirm - показывает окно с надписью и кнопками 
