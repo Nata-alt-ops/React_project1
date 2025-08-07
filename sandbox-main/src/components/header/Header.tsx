@@ -1,7 +1,6 @@
 import React from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import { useEvent } from 'effector-react';
-import { logout } from '../AuthGuard/auth';
 import './Header.css';
 
 export const Header = () => {
