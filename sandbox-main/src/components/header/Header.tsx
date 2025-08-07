@@ -17,7 +17,7 @@ export const Header = ({setIsAuthenticated}: HeaderProps) => {
 
  const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
-    setIsAuthenticated(false); // Аналогично LoginForm
+    setIsAuthenticated(false); 
     navigate('/login');
   };
 
