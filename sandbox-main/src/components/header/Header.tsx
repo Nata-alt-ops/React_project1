@@ -1,18 +1,20 @@
 import React from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import { useEvent } from 'effector-react';
+import { logout } from '../AuthGuard/auth';
 import './Header.css';
 
 export const Header = () => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
   const isActive = (name: string) => pathname === name;
+  const logoutFn = useEvent(logout);
+
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated'); // Только это остаётся!
-    navigate('/login'); // Перенаправление
-    window.location.reload(); // Добавить эту строку
+    logoutFn();
+    navigate('/login'); // Перенаправляем на страницу входа
+    window.location.reload();
   };
- 
 
   const navigateMenu = [
     {
