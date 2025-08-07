@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import './Users.css';
 
 
@@ -29,17 +29,6 @@ type User= {
     bs:string;
   }
 };
-/*type User = {
-  id: number;
-  name: string;
-  role: string;
-  city: string;
-  email: string;
-  link: string;
-  status: string;
-  photo: string;
-};*/
-
 type FormData = {
   name:string;
   username:string;
@@ -58,38 +47,30 @@ type FormData = {
   website:string;
   company:{
     name:string;
-    catchPhrase:string;
-    bs:string;
+    catchPhrase?:string;
+    bs?:string;
   }
 }
-
-/*type FormData = {
-  name: string;
-  role: string;
-  city: string;
-  email: string;
-  link: string;
-  status: string;
-};*/
-
 
 export const Users = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [users, setUsers] = useState([]);
+   const [users, setUsers] = useState<User[]>([]);
 
   // Загрузка данных
   useEffect(() => {
     setLoading(true);
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://jsonplaceholder.typicode.com/users') 
       .then(response => {
-        if (!response.ok) { throw new Error('Ошибка загрузки');}
+        if (!response.ok) {
+          throw new Error('Ошибка загрузки');
+        }
         return response.json();
       })
-      .then(info_Users: User[]) =>{
-        setUsers(info_Users);
+      .then((data: User[]) => {
+        setUsers(data);
         setError(null);
       })
       .catch(err => {
@@ -99,109 +80,7 @@ export const Users = () => {
         setLoading(false);
       });
   }, []);
-    /*[
-        {/*Список пользователей
-            id: 1,
-            name: 'Balaji Nant',
-            role: 'Lead Product Designer',
-            city: 'Vancouver',
-            email: 'ivan@doe.com',
-            link: 'https://balajinant.com',
-            status: 'Verified',
-            photo: '/avatar1.jpg'
-        },
-        {
-            id: 2,
-            name: 'Nithya Menon',
-            role: 'UI Designer',
-            city: 'Bangalore',
-            email: 'ivan@doe.com',
-            link: 'project.com/user849',
-            status: 'Ongoing',
-            photo: '/avatar2.png'
-        },
-        {
-          id:3,
-          name: 'Meera Gonzalez',
-          role: 'Product Designer',
-          city: 'Toronto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar3.png'
-        },
-        {
-          id:4,
-          name: 'Karthik Subramanian',
-          role: 'Sub Content',
-          city: 'Coimbatore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Ongoing',
-          photo: '/Avatar.png'
-        },
-        {
-          id:5,
-          name: 'Mithra B',
-          role: 'Product Designer',
-          city: 'Vancouver',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/Avatar.png'
-        },
-        {
-          id:6,
-          name: 'Jagathesh Narayanan',
-          role: 'Coimbatore',
-          city: 'Coimbatore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Rejected',
-          photo: '/avatar6.jpg'
-        },
-        {
-          id:7,
-          name: 'Steve Rogers',
-          role: 'Developer',
-          city: 'Toronto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/avatar7.jpg'
-        },
-        {
-          id:8,
-          name: 'Richard Hendricks',
-          role: 'Sr. Developer',
-          city: 'Palo Alto',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar8.jpg'
-        },
-        {
-          id:9,
-          name: 'Monica Patel',
-          role: 'UX Writer',
-          city: 'Bangalore',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'On Hold',
-          photo: '/avatar9.jpg'
-        },
-        {
-          id:10,
-          name: 'Dinesh Kumar',
-          role: 'Project Manager',
-          city: 'Chennai',
-          email: 'ivan@doe.com',
-          link: 'project.com/user849',
-          status: 'Verified',
-          photo: '/avatar10.jpg'
-        },
-    ]
-  );/*
+    
   /*Первоначальное состояние модального окна - закрыто*/
   const[ isModalOpen, setIsModalOpen] = useState(false);
   /*register — связывает поля ввода с формой (аналог name и onChange в ручном управлении).
@@ -217,49 +96,31 @@ export const Users = () => {
  /*Отправка формы*/
   const onSubmit = (data: FormData) => {
     const newUser: User = {
-      id: 
-
-
-
-
-
-
-
-
-
-
-      ...data,  // Берет данные из формы
-      id: users.length + 1, //Новый id 
-      photo: '/Avatar.png', //фото по умолчанию
-    };
+      id: users.length > 0 ? Math.max(...users.map(u => u.id)) +1:1,
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      address: {
+        street: data.address.street,
+        suite:data.address.suite,
+        city:data.address.city,
+        zipcode:data.address.zipcode,
+        geo:{
+        lat:data.address.geo.lat,
+        lng:data.address.geo.lng,
+      }},
+      phone:data.phone,
+      website:data.website,
+      company:{
+        name:data.company.name,
+        catchPhrase:'',
+        bs:""
+      }
+  };
     setUsers([...users, newUser]);
     closeModal();
   };
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /*Удаление пользователей
   window.confirm - показывает окно с надписью и кнопками 
   120 строка - создание нового массива, без удаленного пользователя*/ 
@@ -271,45 +132,27 @@ export const Users = () => {
     /*Для поисковой строки - осуществляет поиск по ввсем столбцам таблицы*/ 
     const Users = users.filter(user =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.status.toLowerCase().includes(searchTerm.toLowerCase())
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+
+        user.address.street.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.address.suite.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.address.city.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.address.zipcode.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.address.geo.lat.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.address.geo.lng.toLowerCase().includes(searchTerm.toLowerCase())||
+
+        user.phone.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.website.toLowerCase().includes(searchTerm.toLowerCase())||
+
+        user.company.name.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.company.catchPhrase.toLowerCase().includes(searchTerm.toLowerCase())||
+        user.company.bs.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    /*Для 4 столбца - отобрвжения статуса с определенным цветом*/ 
-    const getStatus = (status:string) =>{
-      switch(status){
-        case 'Verified':
-          return{ 
-            backgroundColor: '#C9E8E8', 
-            color: '#105352',
-            padding: '4px 8px',
-            borderRadius: '1px',
-            minWidth: '75px',
-            minHeight:'29px',
-          };
-        case 'Ongoing':
-          return{ backgroundColor: '#CBDCF9', color: '#103680',
-            padding: '4px 8px',
-            borderRadius: '1px',
-            minWidth: '75px',
-            minHeight:'29px',
-           };
-        case 'On Hold':
-          return{ backgroundColor: '#FFF3DD', color: '#AA8345',
-            padding: '4px 8px',
-            borderRadius: '1px',
-            minWidth: '75px',
-            minHeight:'29px',
-           };
-        case 'Rejected':
-          return{ backgroundColor: '#F3D4D1', color: '#70241D',
-            padding: '4px 8px',
-            borderRadius: '1px',
-            minWidth: '75px',
-            minHeight:'29px',
-           };
-      }
-    };  
+
+    if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   /*Что мы видим в итоге*/ 
   return (
     <div className='users_body'>
@@ -328,43 +171,91 @@ export const Users = () => {
           overlayClassName="modal-overlay"
         >{/*Сама форма заполнения*/}
           <form onSubmit={handleSubmit(onSubmit)} className='modal-form'>
-                <div className="form-group">
+              <div className="form-group">
               <label className='label_text'>Введите данные о пользователе:</label>
+       
               <input placeholder='Имя пользователя'
                 {...register("name", { required: "Обязательное поле" })}
                 className={errors.name ? "error" : ""}
               />
               {errors.name && <span className="error-text">{errors.name.message}</span>}
-              <input placeholder='Должность'
-                {...register("role", { required: "Обязательное поле" })}
-                className={errors.role ? "error" : ""}
+           
+              <input placeholder='Никнейм'
+                {...register("username", { required: "Обязательное поле" })}
+                className={errors.username ? "error" : ""}
               />
-              {errors.role && <span className="error-text">{errors.role.message}</span>}
+       
+              {errors.username && <span className="error-text">{errors.username.message}</span>}
+              <input placeholder='Email'
+                {...register("email")}/>
+              
+      
+              
+              <label className='address_label'>Адрес:</label>
+              <input placeholder='Улица'
+                {...register("address.street", { required: "Обязательное поле" })}
+                className={errors.address?.street ? "error" : ""}/>
+              {errors.address?.street && <span className="error-text">{errors.address.street.message}</span>}
+
+
+              <input placeholder='Офис'
+                {...register("address.suite", { required: "Обязательное поле" })}
+                className={errors.address?.suite ? "error" : ""}/>
+              {errors.address?.suite && <span className="error-text">{errors.address.suite.message}</span>}
+
+
               <input placeholder='Город'
-                {...register("city", { required: "Обязательное поле" })}
-                className={errors.city ? "error" : ""}
-              />
-              {errors.city && <span className="error-text">{errors.city.message}</span>}
+                {...register("address.city", { required: "Обязательное поле" })}
+                className={errors.address?.city ? "error" : ""}/>
+              {errors.address?.city && <span className="error-text">{errors.address.city.message}</span>}
+
+
+              <input placeholder='Зип-код'
+                {...register("address.zipcode", { required: "Обязательное поле" })}
+                className={errors.address?.zipcode ? "error" : ""}/>
+              {errors.address?.zipcode && <span className="error-text">{errors.address.zipcode.message}</span>}
+
+
+              <label className='geo_label'>Геолокация:</label>
+              <input placeholder='Широта'
+                {...register("address.geo.lat", { required: "Обязательное поле" })}
+                className={errors.address?.geo?.lat ? "error" : ""}/>
+              {errors.address?.geo?.lat  && <span className="error-text">{errors.address.geo.lat.message}</span>}
+
+
+              <input placeholder='Долгота'
+                {...register("address.geo.lng", { required: "Обязательное поле" })}
+                className={errors.address?.geo?.lat ? "error" : ""}/>
+              {errors.address?.geo?.lng  && <span className="error-text">{errors.address.geo.lng.message}</span>}
+
+
+              <input placeholder='Телефон'
+                {...register("phone", { required: "Обязательное поле" })}
+                className={errors.phone ? "error" : ""}/>
+              {errors.phone  && <span className="error-text">{errors.phone.message}</span>}
+
+
+              <input placeholder='Веб-сайт'
+                {...register("website", { required: "Обязательное поле" })}
+                className={errors.website ? "error" : ""}/>
+              {errors.website  && <span className="error-text">{errors.website.message}</span>}
+
+
+              <label className='company_label'>Информация о компании</label>
+              <input placeholder='Название компании'
+                {...register("company.name", { required: "Обязательное поле" })}
+                className={errors.company?.name ? "error" : ""}/>
+              {errors.company?.name && <span className="error-text">{errors.company.name.message}</span>}
+
+
+              <input placeholder='Коронная фраза'
+                {...register("company.catchPhrase")}/>
         
-              <input
-                type="email" placeholder='Электронная почта'
-                {...register("email")}
-              />
-               
-              <input placeholder='Ссылка(необязательно)'
-                type="url"
-                {...register("link")}
-              />
-            </div>
-            <div className="form-group">
-              <label className='label_status'>Статус:</label>
-              <select {...register("status", { required: true })}>
-                <option value="">Выберите статус</option>
-                <option value="Verified" className='Verified'>Verified</option>
-                <option value="Ongoing" className='Ongoing'>Ongoing</option>
-                <option value="On Hold" className='On_Hold'>On Hold</option>
-                <option value="Rejected" className='Rejected'>Rejected</option>
-              </select>
+
+
+               <input placeholder='bs'
+                {...register("company.bs")}/>
+        
             </div>
 
             <div className="form-buttons">
@@ -373,15 +264,19 @@ export const Users = () => {
             </div>
           </form>
         </Modal>  
+
           <div className='table_con'>
           <table className='users_table'>
             <thead className='table_head'>
             <tr>
-              <th>Пользователь</th>
-              <th>Город</th>
-              <th>Ссылка</th>
-              <th>Статус</th>
-              <th className='actions'>Действия</th>
+              <th>name</th>
+              <th>username</th>
+              <th>email</th>
+              <th>address</th>
+              <th>phone</th>
+              <th>website</th>
+              <th>company</th>
+              <th className='actions'>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -389,28 +284,39 @@ export const Users = () => {
               {Users.map(user => (
                 <tr key={user.id}>
                   <td>
-                    <div className='user_text'>
-                        <img src={user.photo} className='img' alt='' />
-                        <div className='text_info'>
+                    <div className='name_text'>
+                        <div className='name_info'>
                             <p className='name_text'><strong>{user.name}</strong></p>
-                            <p className='role_text'>{user.role}</p>
                         </div>
                     </div> 
                   </td>
-                  <td className='city_text'>{user.city}</td>
-                  <td className='link_text'><a
-                  href={user.link}
-                  target='_blank' rel="noreferrer noopener">{user.link.replace(/^https?:\/\//, '')}</a></td>
-                  <td className='status_text' >
-                    <span style={getStatus(user.status)}>{user.status}</span></td>
-                  <td className='actions_text'>
+                  <td className='username_text'>{user.username}</td>
+                  <td className='email_text'>{user.email}</td>
+                  <td className='address_text' >
+                    <div className='address_street'><p>Улица: {user.address.street}</p></div>
+                    <div className='address_suite'><p>Номер Офиса: {user.address.suite}</p></div>
+                    <div className='address_city'><p>Город: {user.address.city}</p></div>
+                    <div className='address_zipcode'><p>Зип-код: {user.address.zipcode}</p></div>
+                    <label className='label_geo'>Координаты:</label>
+                    <div className='address_geo_lat'><p>Широта: {user.address.geo.lat}</p></div>
+                    <div className='address_geo_lng'><p>Долгота: {user.address.geo.lng}</p></div>
+                  </td>
+                  <td className='phone_text'>{user.phone}</td>
+                  <td className='website_text'>{user.website}</td>
+                  <td className='company_text'>
+                    <div className='company_name'>{user.company.name}</div>
+                    <div className='company_catchPhrase'>{user.company.catchPhrase}</div>
+                    <div className='company_bs'>{user.company.bs}</div>
+                  </td>
+                   <td className='actions_text'>
                     <div className='actions_icon'>
                         <span><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
                         <span onClick={() => DeleteUsers(user.id)}><img src='/Cell Action Button (1).png' className='icon_2' alt='' /></span>
                     </div>
                     </td>
+
                 </tr>
-              ))}
+                ))}
             </tbody>
           </table>
           </div>

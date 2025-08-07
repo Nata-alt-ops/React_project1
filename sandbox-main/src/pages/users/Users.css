@@ -64,12 +64,12 @@ body{
 
 /*Стили для таблицы с пользователями */
 .users_table {
-  width: 100%;
-   border-collapse: collapse; 
+  width: 1513px;
+  border-collapse: collapse; 
   font-family: 'Noto Sans';
   text-align: left;
   margin-top: 36px;
-  table-layout: fixed;
+  table-layout: auto;
   padding: 16px;
   margin-left: 27px;
 }
@@ -87,37 +87,8 @@ body{
 
 /*Стили для 5 столбца действия*/
 .actions{
-  text-align: right;
-  padding-right: 40px;
-}
-
-/*Контейнер для имени, аватара и должности пользователя*/
-.user_text{
-    display: flex;
-    align-items: center;
-    gap:12px;
-    /*background-color: darkgray;*/
-    padding: 10px;
-    
-}
-
-/*Стили для аватара*/
-.img{
-  width: 36px;
-  height: 36px;
-  border-radius: 100px;
-  flex-shrink: 0;
-   object-fit: cover;
-}
-
-/*Контейнер для имени и должности*/
-.text_info{
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 300px;
+  text-align: left;
+  padding-right:17px;
 }
 
 /*Стили для имени*/
@@ -130,45 +101,25 @@ body{
   color: #35353A;
   margin: 0px;
 }
-/*Стили для должности*/
-.role_text{
-  font-weight: 400;
-  font-family: 'Noto Sans';
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0;
-  margin: 0px;
-}
 
-/*Стили для столбца город*/
-.city_text{
+.username_text{
   font-family: 'Noto Sans';
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0;
 }
-/*Стили для столбца ссылок*/
-.link_text{
+
+.email_text{
   font-family: 'Noto Sans';
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   letter-spacing: 0;
   color: #175AE4;
   cursor: pointer;
-  text-decoration: none !important;
 }
-/*Ссылка обычное состояние, если по ней уже переходили,
-при наведении и в момент клика на нее*/
-.link_text a,
-.link_text a:visited,
-.link_text a:hover,
-.link_text a:active {
-  color: #175AE4 !important; /* Синий цвет */
-  text-decoration: none !important;
-  cursor: pointer;
-}
+
 .actions_icon {
   display: flex;
   justify-content: flex-start;
@@ -178,12 +129,12 @@ body{
 
 /*Стили для 1 иконки*/
 .icon_1{
-  padding-left: 214px;
+  padding-left: 0px;
   width: 28px;
   height: 28px;
   cursor: pointer;
+  
 }
-
 /*Стили для 2 иконки*/
 .icon_2{
   margin-left: 0px;
@@ -191,6 +142,23 @@ body{
   height: 28px;
   cursor: pointer;
 }
+
+.address_text{
+  white-space: normal; 
+  word-break: break-word; 
+}
+.address_street, .address_suite, 
+.address_city, .address_zipcode,
+.address_geo_lat, .address_geo_lng{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+.label_geo{
+  font-weight: 600;
+  font-size: 14px;
+}
+
 
 /*горизонтальные полосы снизу*/
 .users_table tr {
@@ -203,13 +171,16 @@ body{
 }
 
 /*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в теле таблицы*/
-.users_table td:nth-child(3),
-.users_table td:nth-child(4) {
+.users_table td
+ {
   position: relative;
   padding-left: 15px;
   border-left: 1px solid #f1f0f0;
 
 }
+.users_table td:first-child
+ { border-left:none;
+ }
 
 /*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в шапке*/
 .users_table th:nth-child(3),
@@ -219,6 +190,63 @@ body{
   border-left: 1px  #ebebeb;
 
 }
+
+
+.users_table th:nth-child(1), 
+.users_table td:nth-child(1) {
+  width: auto; 
+}
+
+.users_table th:nth-child(2), 
+.users_table td:nth-child(2) {
+  width: auto; 
+}
+
+.users_table th:nth-child(3), 
+.users_table td:nth-child(3) {
+  width: auto; 
+}
+
+.users_table th:nth-child(4), 
+.users_table td:nth-child(4) {
+  width: auto; 
+}
+
+.users_table th:nth-child(5), 
+.users_table td:nth-child(5) {
+  width: auto; 
+}
+
+.users_table th:nth-child(6), 
+.users_table td:nth-child(6) {
+  width: auto; 
+}
+
+.users_table th:nth-child(7), 
+.users_table td:nth-child(7) {
+  width: auto; 
+}
+
+.users_table th:nth-child(8), 
+.users_table td:nth-child(8) {
+  width: auto; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Стили для кнопки добавления пользователя*/
 .add_user{
   background-color: #d77ff1 !important;
