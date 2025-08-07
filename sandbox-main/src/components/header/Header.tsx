@@ -12,8 +12,8 @@ export const Header = () => {
 
   const handleLogout = () => {
     logoutFn();
-    navigate('/login'); // Перенаправляем на страницу входа
-    window.location.reload();
+    navigate('/login'); 
+    window.location.reload(); /*чтобы точно отобразилась что мы вышли из ака*/ 
   };
 
   const navigateMenu = [
