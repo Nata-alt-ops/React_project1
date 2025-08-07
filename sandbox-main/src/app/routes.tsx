@@ -22,7 +22,7 @@ export const AppRoutes = () => {
         path="/"
         element={
           <AuthGuard isAuth={isAuthenticated}  privateFallback={<LoginForm setIsAuthenticated={setIsAuthenticated} />}>
-            <Layout>
+            <Layout setIsAuthenticated={setIsAuthenticated}>
               <Outlet />
             </Layout>
             </AuthGuard>

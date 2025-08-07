@@ -1,7 +1,5 @@
 import React from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
-import { useEvent } from 'effector-react';
-import { logout } from '../AuthGuard/auth';
 import './Header.css';
 
 type HeaderProps = {
@@ -11,9 +9,11 @@ type HeaderProps = {
 
 export const Header = ({setIsAuthenticated}: HeaderProps) => {
   const {pathname} = useLocation();
+  
   const navigate = useNavigate();
+
   const isActive = (path: string) => pathname === path;
-  /*const logoutFn = useEvent(logout);*/
+
 
  const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');

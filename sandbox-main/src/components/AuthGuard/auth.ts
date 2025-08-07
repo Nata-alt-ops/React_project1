@@ -1,5 +1,6 @@
 
 import { createStore, createEvent } from 'effector';
+
 export const logout = createEvent();
 
 export const $isAuthenticated = createStore<boolean>(
