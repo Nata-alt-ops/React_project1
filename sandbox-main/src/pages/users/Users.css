@@ -240,14 +240,14 @@ body{
   border: 2px solid #7b0d85 !important;
   border-radius: 4px;
   width: 242px;
-  height: 32px;
+  height: 37px;
   font-family: 'Noto Sans';
   font-size: 14px !important;
   font-weight: 400  ;
   line-height: 20px;
   letter-spacing: 0;
-  margin-top: 26px;
-  margin-left: 1009px;
+  margin-top: 28px;
+  margin-left: 753px;
   cursor: pointer;
   color: #ffffff;
 }
@@ -297,6 +297,10 @@ body{
   flex-direction: column;
   gap: 5px;*/
 }
+.group{
+  display: flex;
+  flex-direction: row;
+}
 
 
 .modal1{
@@ -329,31 +333,6 @@ body{
   gap: 357px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.label_text,.label_status{
-  font-weight: 600;
-  color: #35353A;
-  display: inline-block;
-  font-family: 'Roboto';
-  font-size: 25px;
-
-}
 .form-group input,
 .form-group select {
   padding: 8px 20px;
@@ -393,4 +372,32 @@ body{
 .error-text {
   color: #ff4444;
   font-size: 12px;
+}
+
+.Loading, .Error{
+  font-size: 50px;
+  text-align: center;
+  background-image:
+    linear-gradient(to left,
+      #5242e2 10%,
+      #2ebdd6 20%,
+      #38ec7d 50%
+    );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.city-filter{
+  background-color: #F6F6F7 !important;
+  border: 2px solid #8f8e8e !important;
+  border-radius: 4px;
+  width: 242px;
+  height: 37px;
+  font-family: 'Noto Sans';
+  font-size: 14px !important;
+  font-weight: 400  ;
+  line-height: 20px;
+  letter-spacing: 0;
+  margin-top: 27px;
+  margin-left: 26px;
 }

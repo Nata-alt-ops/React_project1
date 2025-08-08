@@ -47,8 +47,8 @@ type FormData = {
   website:string;
   company:{
     name:string;
-    catchPhrase?:string;
-    bs?:string;
+    catchPhrase:string;
+    bs:string;
   }
 }
 
@@ -58,6 +58,8 @@ export const Users = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
    const [users, setUsers] = useState<User[]>([]);
+   const[edituser, setEditUser] = useState<User | null>(null);
+   const [cityFilter, setCityFilter] = useState('all');
 
   // Загрузка данных
   useEffect(() => {
@@ -88,13 +90,24 @@ export const Users = () => {
     reset — сбрасывает значения формы.
     errors — содержит ошибки валидации.*/ 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (userToEdit: User | null = null) => {setIsModalOpen(true);
+    if (userToEdit){
+      setEditUser(userToEdit);
+      reset(userToEdit);
+    } else{
+      setEditUser(null);
+      reset();
+    }};
   const closeModal = () => {
     setIsModalOpen(false);
     reset(); // Сброс формы
   };
  /*Отправка формы*/
   const onSubmit = (data: FormData) => {
+    if (edituser){
+      setUsers(users.map(item =>item.id === edituser.id ? {...data, id: edituser.id}:
+      item));
+    } else{
     const newUser: User = {
       id: users.length > 0 ? Math.max(...users.map(u => u.id)) +1:1,
       name: data.name,
@@ -114,10 +127,10 @@ export const Users = () => {
       company:{
         name:data.company.name,
         catchPhrase:'',
-        bs:""
-      }
+        bs:""}
   };
     setUsers([...users, newUser]);
+};
     closeModal();
   };
   
@@ -150,20 +163,33 @@ export const Users = () => {
         user.company.bs.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+    const searchCity = cityFilter === 'all' ? Users : Users.filter(user => user.address.city === cityFilter);
+
+    if (loading) return <div className='Loading'>Loading...</div>;
+  if (error) return <div className='Error' >Error: {error}</div>;
 
   /*Что мы видим в итоге*/ 
   return (
     <div className='users_body'>
         <div className='users_con'>
+           <div className='group'>
           <input id='search' type='text' placeholder="🔍Поиск" className='search'
            onChange={(e) => setSearchTerm(e.target.value)} />
+           <select
+            value={cityFilter}
+            onChange={(e) => setCityFilter(e.target.value)}
+            className="city-filter"
+          >
+            <option value="all">Все города</option>
+            {Array.from(new Set(users.map(u => u.address.city))).map(city => (
+              <option key={city} value={city}>{city}</option>
+            ))}
+          </select>
            {/*Добавление нового пользователя*/}
-          <button className='add_user' onClick={openModal}>Добавить пользователя</button>
+          <button className='add_user' onClick={() => openModal()}>Добавить пользователя</button>
+          </div>
           {/*Модальное окно и форма для заполнения*/}
           {/*Модальное окно*/}
-
            <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
@@ -260,12 +286,16 @@ export const Users = () => {
 
 
               <input placeholder='Коронная фраза'
-                {...register("company.catchPhrase")}/>
+                {...register("company.catchPhrase" , { required: "Обязательное поле" })}
+                 className={errors.company?.catchPhrase ? "error" : ""}/>
+                 {errors.company?.catchPhrase && <span className="error-text">{errors.company.catchPhrase.message}</span>}
         
 
 
                <input placeholder='Бизнес стратегия'
-                {...register("company.bs")}/>
+                {...register("company.bs", { required: "Обязательное поле" })}
+                className={errors.company?.bs ? "error" : ""}/>
+                {errors.company?.bs && <span className="error-text">{errors.company.bs.message}</span>}
         </div>
             </div>
 
@@ -292,7 +322,7 @@ export const Users = () => {
             </thead>
             <tbody>
               {/*Перебор массива пользователей*/}
-              {Users.map(user => (
+              {searchCity.map(user => (
                 <tr key={user.id}>
                   <td>
                     <div className='name_text'>
@@ -321,7 +351,7 @@ export const Users = () => {
                   </td>
                    <td className='actions_text'>
                     <div className='actions_icon'>
-                        <span><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
+                        <span onClick={() => openModal(user)}><img src='/Cell Action Button.png' className='icon_1' alt=''></img></span>
                         <span onClick={() => DeleteUsers(user.id)}><img src='/Cell Action Button (1).png' className='icon_2' alt='' /></span>
                     </div>
                     </td>
