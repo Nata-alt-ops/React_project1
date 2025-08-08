@@ -83,6 +83,7 @@ body{
   line-height: 16px;
   letter-spacing: 0;
   color: #101018;
+  text-align: center;
 }
 
 /*Стили для 5 столбца действия*/
@@ -90,7 +91,6 @@ body{
   text-align: left;
   padding-right:17px;
 }
-
 /*Стили для имени*/
 .name_text{
   font-family: 'Noto Sans';
@@ -101,6 +101,7 @@ body{
   color: #35353A;
   margin: 0px;
 }
+
 
 .username_text{
   font-family: 'Noto Sans';
@@ -120,28 +121,6 @@ body{
   cursor: pointer;
 }
 
-.actions_icon {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 1px;
-  gap: 10px;
-}
-
-/*Стили для 1 иконки*/
-.icon_1{
-  padding-left: 0px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  
-}
-/*Стили для 2 иконки*/
-.icon_2{
-  margin-left: 0px;
-   width: 28px;
-  height: 28px;
-  cursor: pointer;
-}
 
 .address_text{
   white-space: normal; 
@@ -170,7 +149,7 @@ body{
   border-bottom: none;
 }
 
-/*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в теле таблицы*/
+/*Добавляет вертикальную линию слева у столбцов*/
 .users_table td
  {
   position: relative;
@@ -179,8 +158,8 @@ body{
 
 }
 .users_table td:first-child
- { border-left:none;
- }
+{ border-left:none;
+}
 
 /*Добавляет вертикальную линию слева у 3 и 4 столбца для столбцов в шапке*/
 .users_table th:nth-child(3),
@@ -188,9 +167,8 @@ body{
   position: relative;
   padding-left: 15px;
   border-left: 1px  #ebebeb;
-
+  
 }
-
 
 .users_table th:nth-child(1), 
 .users_table td:nth-child(1) {
@@ -232,19 +210,28 @@ body{
   width: auto; 
 }
 
+.actions_icon {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1px;
+  gap: 10px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+/*Стили для 1 иконки*/
+.icon_1{
+  padding-left: 0px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  
+}
+/*Стили для 2 иконки*/
+.icon_2{
+  margin-left: 0px;
+   width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
 
 
 /*Стили для кнопки добавления пользователя*/
@@ -293,22 +280,72 @@ body{
   background: white;
   padding: 25px;
   border-radius: 8px;
-  width: 300px;
-  max-width: 300px;
+  width: 802px;
+  max-width: 700px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  left:200px
+  left:200px;
+  height: 600px;
 }
 .modal-form {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 100px;*/
 }
 
 .form-group {
+  /*display: flex;
+  flex-direction: column;
+  gap: 5px;*/
+}
+
+
+.modal1{
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
+.modal2{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.modal3{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.modal2_group{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 197px;
+}
+
+.label_address_geo{
+  display: flex;
+  flex-direction: row;
+  gap: 357px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .label_text,.label_status{
   font-weight: 600;
   color: #35353A;
@@ -323,7 +360,6 @@ body{
   border: 1px solid #E5E5E5;
   border-radius: 4px;
   font-size: 14px;
-
   height: 35px;
 }
 
@@ -358,36 +394,3 @@ body{
   color: #ff4444;
   font-size: 12px;
 }
-
-.Verified{ 
-    background-color: #C9E8E8;
-    color: '#105352';
-    padding: 4px 8px;
-    border-radius: 1px;
-    min-width: 75px;
-    min-height:29px;
-}
-.Ongoing{ 
-  background-color: #CBDCF9;
-  color: #103680;
-  padding: 4px 8px;
-  border-radius: 1px;
-  min-width: 75px;
-  min-height:29px;
-}
-.On_Hold{ 
-  background-color: #FFF3DD;
-  color: #AA8345;
-  padding: 4px 8px;
-  border-radius: 1px;
-  min-width: 75px;
-  min-height:29px;
-}
-.Rejected{
-  background-Color: #F3D4D1;
-  color: #70241D;
-  padding: 4px 8px;
-  border-radius: 1px;
-  min-width: 75px;
-  min-height:29px;}
-            
