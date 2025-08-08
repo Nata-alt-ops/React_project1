@@ -172,8 +172,11 @@ export const Users = () => {
         >{/*Сама форма заполнения*/}
           <form onSubmit={handleSubmit(onSubmit)} className='modal-form'>
               <div className="form-group">
+
+              
               <label className='label_text'>Введите данные о пользователе:</label>
-       
+              
+               <div className='modal1'>
               <input placeholder='Имя пользователя'
                 {...register("name", { required: "Обязательное поле" })}
                 className={errors.name ? "error" : ""}
@@ -188,10 +191,15 @@ export const Users = () => {
               {errors.username && <span className="error-text">{errors.username.message}</span>}
               <input placeholder='Email'
                 {...register("email")}/>
-              
+              </div> 
       
+               <div className='label_address_geo'>
+                <label className='address_label'>Адрес:</label>
+                <label className='geo_label'>Геолокация:</label>
+               </div>
               
-              <label className='address_label'>Адрес:</label>
+              <div className='modal2'>
+                <div className='modal2_group'>
               <input placeholder='Улица'
                 {...register("address.street", { required: "Обязательное поле" })}
                 className={errors.address?.street ? "error" : ""}/>
@@ -202,8 +210,8 @@ export const Users = () => {
                 {...register("address.suite", { required: "Обязательное поле" })}
                 className={errors.address?.suite ? "error" : ""}/>
               {errors.address?.suite && <span className="error-text">{errors.address.suite.message}</span>}
-
-
+              </div>
+              <div className='modal2_group'>
               <input placeholder='Город'
                 {...register("address.city", { required: "Обязательное поле" })}
                 className={errors.address?.city ? "error" : ""}/>
@@ -214,9 +222,9 @@ export const Users = () => {
                 {...register("address.zipcode", { required: "Обязательное поле" })}
                 className={errors.address?.zipcode ? "error" : ""}/>
               {errors.address?.zipcode && <span className="error-text">{errors.address.zipcode.message}</span>}
-
-
-              <label className='geo_label'>Геолокация:</label>
+              </div>
+                
+               <div className='modal2_group'>
               <input placeholder='Широта'
                 {...register("address.geo.lat", { required: "Обязательное поле" })}
                 className={errors.address?.geo?.lat ? "error" : ""}/>
@@ -227,8 +235,11 @@ export const Users = () => {
                 {...register("address.geo.lng", { required: "Обязательное поле" })}
                 className={errors.address?.geo?.lat ? "error" : ""}/>
               {errors.address?.geo?.lng  && <span className="error-text">{errors.address.geo.lng.message}</span>}
-
-
+              </div>
+                </div>
+      
+                 <div className='modal3'>
+                  <label className='label_phone'>Контакты:</label>
               <input placeholder='Телефон'
                 {...register("phone", { required: "Обязательное поле" })}
                 className={errors.phone ? "error" : ""}/>
@@ -239,8 +250,8 @@ export const Users = () => {
                 {...register("website", { required: "Обязательное поле" })}
                 className={errors.website ? "error" : ""}/>
               {errors.website  && <span className="error-text">{errors.website.message}</span>}
-
-
+            </div>
+              <div className='modal3'>
               <label className='company_label'>Информация о компании</label>
               <input placeholder='Название компании'
                 {...register("company.name", { required: "Обязательное поле" })}
@@ -253,9 +264,9 @@ export const Users = () => {
         
 
 
-               <input placeholder='bs'
+               <input placeholder='Бизнес стратегия'
                 {...register("company.bs")}/>
-        
+        </div>
             </div>
 
             <div className="form-buttons">
@@ -304,9 +315,9 @@ export const Users = () => {
                   <td className='phone_text'>{user.phone}</td>
                   <td className='website_text'>{user.website}</td>
                   <td className='company_text'>
-                    <div className='company_name'>{user.company.name}</div>
-                    <div className='company_catchPhrase'>{user.company.catchPhrase}</div>
-                    <div className='company_bs'>{user.company.bs}</div>
+                    <div className='company_name'><p>Название компании: {user.company.name}</p></div>
+                    <div className='company_catchPhrase'><p>Коронная фраза: {user.company.catchPhrase}</p></div>
+                    <div className='company_bs'><p>Бизнес стратегия: {user.company.bs}</p></div>
                   </td>
                    <td className='actions_text'>
                     <div className='actions_icon'>
